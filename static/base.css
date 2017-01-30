@@ -1,0 +1,21 @@
+body {
+    margin-top: 1em;
+}
+
+div.info-label {
+    margin: 2em;
+}
+
+@media print {
+    .output {
+        -ms-transform: rotate(270deg);
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
+        top: 1.5in;
+        left: -1in;
+    }
+    
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}

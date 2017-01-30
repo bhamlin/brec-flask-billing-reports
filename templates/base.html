@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Usage chart</title>
+        <link rel='stylesheet'
+              href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+              integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u'
+              crossorigin='anonymous'>
+        <link rel='stylesheet'
+              href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css'
+              integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp'
+              crossorigin='anonymous'>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='base.css') }}">
+    </head>
+    <body>
+        <div class='container-fluid'>
+            <div class='no-print'>
+                <div class='row'>
+                    <div class='col-xs-10'>
+                        <h1>Usage chart</h1>
+                    </div>
+                    <div class='col-xs-2 text-right'>
+                        <a href='#' class='btn btn-primary btn-xs'>BREC</a>
+                    </div>
+                </div>
+                <div class='row'>
+                    <form class='form-horizontal' method='post'>
+                        <div class='form-group'>
+                            <label for='inputIdentifier' class='col-sm-2 control-label text-nowrap'>
+                                <select id='inputIdType'>
+                                    <option value='account'{{ inputAccount }}>Account number</option>
+                                    <option value='meter'{{ inputMeter }}>Meter number</option>
+                                </select>
+                            </label>
+                            <div class='col-sm-5'>
+                                <input type='text' class='form-control' id='inputIdentifier' placeholder='Identifier'
+                                       name='inputIdentifier' value='{{ inputIdentifier }}' />
+                            </div>
+                        </div>
+                        <div class='form-group'>
+                            <label for='inputDateStart' class='col-sm-2 control-label text-nowrap'>Start date</label>
+                            <div class='col-sm-2'>
+                                <input type='date' class='form-control' id='inputDateStart' placeholder='Start'
+                                       name='inputDateStart' value='{{ inputDateStart }}' />
+                            </div>
+                            <label for='inputDateEnd' class='col-sm-1 control-label text-nowrap'>End date</label>
+                            <div class='col-sm-2'>
+                                <input type='date' class='form-control' id='inputDateEnd' placeholder='End'
+                                       name='inputDateEnd' value='{{ inputDateEnd }}' />
+                            </div>
+                        </div>
+                        <div class='form-group'>
+                            <div class='col-sm-offset-2 col-sm-2'>
+                                <button class='btn btn-primary' type='button' id='generateChart'>Generate</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class='row'>
+                    <div class='col-xs-12'>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+            <div class='output'>
+                <div class='bg-info info-label'>Identify an account and pick a date range above.</div>
+            </div>
+        </div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'
+                integrity='sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7'
+                crossorigin='anonymous'></script>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
+                integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'
+                crossorigin='anonymous'></script>
+        <script src='{{ url_for('static', filename='base.js') }}'></script>
+    </body>
+</html>
