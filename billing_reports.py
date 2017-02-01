@@ -31,6 +31,8 @@ PGSQL_DSN = (
     '''pq://{0[PGSQL_USERNAME]}:{0[PGSQL_PASSWORD]}@warehouse.brec.local/Black River?[sslmode]=require'''
         .format(app.config))
 
+round_to_tenths = lambda x: int(x * 10.0) / 10.0
+
 @app.route('/')
 def index():
     data = dict()
@@ -106,9 +108,9 @@ order by left(measurement_time::character varying, 10)
             entryCount=len(dateList),
             dateList="|".join(dateList),
             readingList="|".join(map(str, readingList)),
-            tempMin="|".join(map(str, tempMin)),
-            tempAvg="|".join(map(str, tempAvg)),
-            tempMax="|".join(map(str, tempMax)),
+            tempMin="|".join(map(str, map(round_to_tenths, tempMin))),
+            tempAvg="|".join(map(str, map(round_to_tenths, tempAvg))),
+            tempMax="|".join(map(str, map(round_to_tenths, tempMax))),
             colorList="|".join([COLOR_DAYLIST[x in ('Saturday', 'Sunday')] for x in dowList]))
     else:
         return 'doorp'
