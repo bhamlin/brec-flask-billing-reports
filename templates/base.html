@@ -29,8 +29,8 @@
                         <div class='form-group'>
                             <label for='inputIdentifier' class='col-sm-2 control-label text-nowrap'>
                                 <select id='inputIdType'>
-                                    <option value='account'{{ inputAccount }}>Account number</option>
                                     <option value='meter'{{ inputMeter }}>Meter number</option>
+                                    <!-- <option value='account'{{ inputAccount }}>Account number</option> -->
                                 </select>
                             </label>
                             <div class='col-sm-5'>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class='output'>
-                <div class='bg-info info-label'>Identify an account and pick a date range above.</div>
+{% block body %}{% endblock body %}
             </div>
         </div>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'
@@ -73,6 +73,15 @@
         <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
                 integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'
                 crossorigin='anonymous'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"
+                integrity="sha384-W8cTqoHl7yDp2Uz0Vpv3DLdW28EVXFcPdY+t64oQypRLFRfCruurQFkVnK4a/82K"
+                crossorigin="anonymous"></script>
+        <script type="text/javascript">
+
+base_url = '{{ base_url }}';
+
+        </script>
         <script src='{{ url_for('static', filename='base.js') }}'></script>
+{% block scripts %}{% endblock scripts %}
     </body>
 </html>

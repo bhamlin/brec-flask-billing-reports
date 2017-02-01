@@ -14,8 +14,8 @@ function bloop() {
         console.log(sdstart);
         console.log(sdend);
         
-        var newUrl = [window.location.href, ['chart', stype, sid, 'start', sdstart, 'end', sdend].join('/')].join('');
-        console.log(newUrl);
+        var newUrl = [base_url, ['chart', stype, sid, 'from', sdstart, 'to', sdend].join('/')].join('');
+        window.location.href = newUrl;
     }
 }
 

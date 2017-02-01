@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block body %}
+                <!-- Data! -->
+                <canvas id="usageChart" width="400" height="400"></canvas>
+{% endblock body %}
+{% block scripts %}
+        <script type="text/javascript">
+
+var chartData = {
+    type: 'bar',
+    responsive: true,
+    maintainAspectRatio: false,
+    data: {
+        labels: '{{ dateList }}'.split('|'),
+        datasets: [{
+            type: 'bar',
+            label: 'kWH usage',
+            data: '{{ readingList }}'.split('|'),
+            backgroundColor: '{{ colorList }}'.split('|'),
+            borderColor: 'rgba(64, 64, 64, 1)',
+            borderWidth: 1,
+            yAxisID: 'y-axis-1'
+        }, {
+            type: 'line',
+            label: 'Temp max',
+            data: '{{ tempMax }}'.split('|'),
+            fill: false,
+            backgroundColor: 'rgba(136, 0, 21, 1)',
+            borderColor: 'rgba(136, 0, 21, 1)',
+            borderWidth: 1,
+            yAxisID: 'y-axis-2'
+        }, {
+            type: 'line',
+            label: 'Temp avg',
+            data: '{{ tempAvg }}'.split('|'),
+            fill: false,
+            backgroundColor: 'rgba(64, 128, 64, 1)',
+            borderColor: 'rgba(64, 128, 64, 1)',
+            borderWidth: 1,
+            yAxisID: 'y-axis-2'
+        }, {
+            type: 'line',
+            label: 'Temp min',
+            data: '{{ tempMin }}'.split('|'),
+            fill: false,
+            backgroundColor: 'rgba(128, 128, 255, 1)',
+            borderColor: 'rgba(128, 128, 255, 1)',
+            borderWidth: 1,
+            yAxisID: 'y-axis-2'
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: '{{ inputIdentifier }}'
+        },
+        tooltips: {
+            mode: 'label'
+        },
+        legend: {
+            display: true
+        },
+        scales: {  
+            xAxes: [
+                { display: true,
+                  gridLines:{ display: false },
+                  labels:{ show: true }
+                }
+            ],
+            yAxes: [
+                { type: "linear",
+                  display: true,
+                  position: "left",
+                  id: "y-axis-1",
+                  gridLines: { display: true },
+                  labels:{ show: true },
+                ticks: {
+                    beginAtZero:true
+                }
+                }, {  
+                  type: "linear",
+                  display: true,
+                  position: "right",
+                  id: "y-axis-2",
+                  gridLines: { display: false },
+                  labels: { show:true },
+                ticks: {
+                    beginAtZero:true
+                }
+                }
+            ]
+        }
+    }
+};
+
+new Chart($("#usageChart"), chartData);
+
+        </script>
+{% endblock scripts %}
